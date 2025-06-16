@@ -41,7 +41,7 @@ export default function renderHomePage() {
           <!-- Gambar Mata di kanan -->
           <div class="col-lg-6 position-relative mb-4 mb-lg-0">
             <div class="hero-img-wrapper">
-              <img src="src/assets/eyes.jpg" alt="Ilustrasi Mata" class="img-fluid hero-img-main shadow-lg" />
+              <img src="/assets/eyes.jpg" alt="Ilustrasi Mata" class="img-fluid hero-img-main shadow-lg" />
               <!-- Ornamen SVG/shape -->
               <svg class="hero-ornamen" width="120" height="120" viewBox="0 0 120 120" fill="none">
                 <circle cx="60" cy="60" r="60" fill="#0d8abc" fill-opacity="0.10"/>
@@ -66,14 +66,14 @@ export default function renderHomePage() {
         <div class="row justify-content-center align-items-center g-4">
           <div class="col-md-5">
             <div class="eye-compare-card text-center">
-              <img src="src/assets/mata-normal.jpeg" alt="Foto Mata Normal" />
+              <img src="/assets/mata-normal.jpeg" alt="Foto Mata Normal" />
               <div class="eye-compare-label">Mata Normal</div>
               <div class="text-muted small mt-2">Lensa mata jernih, tidak ada bercak putih atau keruh.</div>
             </div>
           </div>
           <div class="col-md-5">
             <div class="eye-compare-card text-center">
-              <img src="src/assets/mata-katarak.jpeg" alt="Foto Mata Katarak" />
+              <img src="/assets/mata-katarak.jpeg" alt="Foto Mata Katarak" />
               <div class="eye-compare-label">Mata Katarak</div>
               <div class="text-muted small mt-2">Lensa mata tampak keruh/putih, penglihatan buram.</div>
             </div>
@@ -122,7 +122,7 @@ export default function renderHomePage() {
         <div class="artikel-grid row g-4 justify-content-center">
           <div class="col-md-6 col-lg-4">
             <div class="artikel-card shadow-sm h-100 border-0">
-              <img src="src/assets/mitra.jpg" alt="Apa itu Katarak?" class="artikel-img-top" />
+              <img src="/assets/mitra.jpg" alt="Apa itu Katarak?" class="artikel-img-top" />
               <div class="p-3">
                 <span class="badge artikel-badge bg-theme mb-2">Info Katarak</span>
                 <h5 class="fw-bold text-primary mb-2">Apa itu Katarak?</h5>
@@ -133,7 +133,7 @@ export default function renderHomePage() {
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="artikel-card shadow-sm h-100 border-0">
-              <img src="src/assets/alo.jpg" alt="Gejala Katarak" class="artikel-img-top" />
+              <img src="/assets/alo.jpg" alt="Gejala Katarak" class="artikel-img-top" />
               <div class="p-3">
                 <span class="badge artikel-badge bg-theme mb-2">Gejala</span>
                 <h5 class="fw-bold text-primary mb-2">Gejala Katarak</h5>
@@ -144,7 +144,7 @@ export default function renderHomePage() {
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="artikel-card shadow-sm h-100 border-0">
-              <img src="src/assets/jec.jpg" alt="Cara Mencegah Katarak" class="artikel-img-top" />
+              <img src="/assets/jec.jpg" alt="Cara Mencegah Katarak" class="artikel-img-top" />
               <div class="p-3">
                 <span class="badge artikel-badge bg-theme mb-2">Pencegahan</span>
                 <h5 class="fw-bold text-primary mb-2">Cara Mencegah Katarak</h5>
@@ -167,13 +167,13 @@ export default function renderHomePage() {
           <!-- Kiri: Logo & Kontak -->
           <div class="col-lg-4">
             <div class="mb-3 d-flex align-items-center gap-2">
-              <img src="src/assets/logo-cataraksense.png" alt="CatarakSense" width="38" height="38" />
+              <img src="/assets/catarak.png" alt="CatarakSense" width="38" height="38" />
               <span class="fs-3 fw-bold text-primary">CatarakSense</span>
             </div>
             <div class="d-flex flex-wrap gap-2 mb-3">
-              <span class="footer-badge"><img src="src/assets/icon-ai.png" width="20" class="me-1" />AI Deteksi</span>
-              <span class="footer-badge"><img src="src/assets/icon-info.png" width="20" class="me-1" />Info Katarak</span>
-              <span class="footer-badge"><img src="src/assets/icon-edu.png" width="20" class="me-1" />Edukasi</span>
+              <span class="footer-badge"><img src="/assets/icon-ai.png" width="20" class="me-1" />AI Deteksi</span>
+              <span class="footer-badge"><img src="/assets/icon-info.png" width="20" class="me-1" />Info Katarak</span>
+              <span class="footer-badge"><img src="/assets/icon-edu.png" width="20" class="me-1" />Edukasi</span>
             </div>
             <div class="footer-contact mb-2">
               <i class="bi bi-envelope me-2"></i> cataraksense@gmail.com
@@ -209,7 +209,7 @@ export default function renderHomePage() {
               <li><a href="#">Program Edukasi</a></li>
             </ul>
             <div class="mt-3">
-              <img src="src/assets/footer-banner.png" alt="CatarakSense Banner" class="img-fluid rounded shadow-sm" style="max-width:320px;">
+              <img src="/assets/footer-banner.png" alt="CatarakSense Banner" class="img-fluid rounded shadow-sm" style="max-width:320px;">
             </div>
           </div>
         </div>
