@@ -1,32 +1,30 @@
-export const API_BASE_URL = 'https://cataractsense-api.up.railway.app';
+const BASE_URL = 'https://cataractsense-api.up.railway.app'; // ganti dengan domain backend FastAPI kamu
 
-// fungsi login
-export async function loginUser(username, password) {
-  const response = await fetch(API_BASE_URL + '/users/login', {
+// Fungsi register
+export async function registerUser(data) {
+  const response = await fetch(`${BASE_URL}/auth/register`, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ username, password })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
   });
   return response.json();
 }
 
-// fungsi register
-export async function registerUser(username, email, password) {
-  const response = await fetch(API_BASE_URL + '/users/register', {
+// Fungsi login
+export async function loginUser(data) {
+  const response = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ username, email, password })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
   });
   return response.json();
 }
 
-// fungsi deteksi mata
-export async function deteksiMata(imageFile) {
-  const formData = new FormData();
-  formData.append('image', imageFile);
-  const response = await fetch(API_BASE_URL + 'deteksi', {
+// Fungsi deteksi
+export async function deteksiCatarak(formData) {
+  const response = await fetch(`${BASE_URL}/predict`, {
     method: 'POST',
-    body: formData
+    body: formData, // FormData untuk upload gambar
   });
   return response.json();
 }

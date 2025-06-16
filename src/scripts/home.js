@@ -9,100 +9,214 @@ export default function renderHomePage() {
       prev.onclick = () => slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
       next.onclick = () => slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
     }
+
+    // Animasi fade-in saat scroll
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-visible');
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll('.fade-in-section').forEach(sec => {
+      observer.observe(sec);
+    });
   }, 0);
 
   return `
     <!-- Hero Section -->
-    <section id="home" class="bg-white d-flex align-items-center justify-content-center min-vh-100">
-      <div class="container text-center">
-        <h1 class="display-4 fw-bold text-primary mb-3">CatarakSense - Solusi Digital Deteksi Katarak dari Citra Mata</h1>
-        <p class="lead mb-4 text-secondary">Solusi Digital Deteksi Katarak dari Citra Mata</p>
-      </div>
-    </section>
-
-    <!-- Gambar Perbandingan -->
-    <section class="bg-light py-5">
+    <section class="hero-custom d-flex align-items-center min-vh-100 position-relative overflow-hidden">
       <div class="container">
-        <div class="row justify-content-center align-items-center g-4">
-          <div class="col-md-5 text-center">
-            <img src="src/assets/mata-normal.jpeg" alt="Foto Mata Normal" class="img-fluid rounded shadow" style="max-height:220px;">
-            <p class="mt-2 fw-semibold">Mata Normal</p>
+        <div class="row align-items-center flex-column-reverse flex-lg-row">
+          <!-- Konten Judul di kiri -->
+          <div class="col-lg-6 text-center text-lg-start position-relative z-2">
+            <span class="badge bg-primary bg-opacity-10 text-primary mb-3 fs-6 px-3 py-2 rounded-pill shadow-sm">Deteksi Dini Katarak</span>
+            <h1 class="display-4 fw-bold text-primary mb-3">CatarakSense - Solusi Digital Deteksi Katarak dari Citra Mata</h1>
+            <p class="lead mb-4 text-secondary">Deteksi katarak secara cepat, mudah, dan akurat hanya dengan foto mata Anda. Dapatkan hasil analisis instan berbasis AI!</p>
+            <a href="#deteksi" class="btn btn-primary btn-lg px-4 shadow">Mulai Deteksi Sekarang</a>
           </div>
-          <div class="col-md-5 text-center">
-            <img src="src/assets/mata-katarak.jpeg" alt="Foto Mata Katarak" class="img-fluid rounded shadow" style="max-height:220px;">
-            <p class="mt-2 fw-semibold">Mata Katarak</p>
+          <!-- Gambar Mata di kanan -->
+          <div class="col-lg-6 position-relative mb-4 mb-lg-0">
+            <div class="hero-img-wrapper">
+              <img src="src/assets/eyes.jpg" alt="Ilustrasi Mata" class="img-fluid hero-img-main shadow-lg" />
+              <!-- Ornamen SVG/shape -->
+              <svg class="hero-ornamen" width="120" height="120" viewBox="0 0 120 120" fill="none">
+                <circle cx="60" cy="60" r="60" fill="#0d8abc" fill-opacity="0.10"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Intro Section -->
-    <section class="bg-white py-5">
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#f8fafc" d="M0,64 C480,120 960,0 1440,64 L1440,80 L0,80 Z"></path>
+      </svg>
+    </div>
+
+    <!-- Perbandingan Mata Normal & Katarak -->
+    <section class="eye-compare-bg bg-light py-5 fade-in-section position-relative">
       <div class="container">
-        <h2 class="text-primary mb-3 text-center">Apa itu Katarak?</h2>
-        <p class="text-center mb-4">Katarak adalah kondisi ketika lensa mata yang seharusnya jernih menjadi keruh, sehingga membuat penglihatan menjadi buram, berkabut, atau silau. Masalah ini paling sering terjadi karena proses penuaan, namun bisa juga disebabkan oleh faktor lain seperti cedera, penyakit tertentu, atau kelainan sejak lahir.</p>
-        <h4 class="text-primary mb-2">Gejala Katarak yang Perlu Diwaspadai:</h4>
-        <ul>
-          <li>Penglihatan tampak buram atau seperti berkabut</li>
-          <li>Silau saat melihat cahaya terang, terutama di siang hari</li>
-          <li>Warna terlihat pudar atau kekuningan</li>
-          <li>Kesulitan melihat jelas saat malam hari</li>
-        </ul>
-        <p class="mt-4">CatarakSense hadir sebagai solusi digital inovatif untuk membantu deteksi dini katarak melalui analisis citra mata, dengan cara yang praktis dan cepat.</p>
+        <h2 class="text-center mb-5 text-primary fw-bold">Perbandingan Mata Normal & Katarak</h2>
+        <div class="row justify-content-center align-items-center g-4">
+          <div class="col-md-5">
+            <div class="eye-compare-card text-center">
+              <img src="src/assets/mata-normal.jpeg" alt="Foto Mata Normal" />
+              <div class="eye-compare-label">Mata Normal</div>
+              <div class="text-muted small mt-2">Lensa mata jernih, tidak ada bercak putih atau keruh.</div>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="eye-compare-card text-center">
+              <img src="src/assets/mata-katarak.jpeg" alt="Foto Mata Katarak" />
+              <div class="eye-compare-label">Mata Katarak</div>
+              <div class="text-muted small mt-2">Lensa mata tampak keruh/putih, penglihatan buram.</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- Katarak Info Section -->
+    <section class="katarak-info-section py-5 fade-in-section">
+      <div class="container">
+        <div class="katarak-info-card mx-auto p-4 p-md-5 shadow-sm bg-white rounded-4" style="max-width: 820px;">
+          <div class="d-flex align-items-center gap-2 mb-3 justify-content-center">
+            <h2 class="mb-0 fw-bold text-primary" style="font-size:2rem;">Apa itu Katarak?</h2>
+          </div>
+          <p class="text-center mb-4 fs-5 text-secondary">
+            Katarak adalah kondisi ketika lensa mata yang seharusnya jernih menjadi keruh, sehingga membuat penglihatan menjadi buram, berkabut, atau silau. Masalah ini paling sering terjadi karena proses penuaan, namun bisa juga disebabkan oleh faktor lain seperti cedera, penyakit tertentu, atau kelainan sejak lahir.
+          </p>
+          <div class="mb-4">
+            <div class="fw-bold text-primary mb-2" style="font-size:1.1rem;">
+              <span class="border-start border-4 border-primary ps-2">Gejala Katarak yang Perlu Diwaspadai:</span>
+            </div>
+            <ul class="katarak-list list-unstyled ps-0">
+              <li><span class="katarak-bullet"></span>Penglihatan tampak buram atau seperti berkabut</li>
+              <li><span class="katarak-bullet"></span>Silau saat melihat cahaya terang, terutama di siang hari</li>
+              <li><span class="katarak-bullet"></span>Warna terlihat pudar atau kekuningan</li>
+              <li><span class="katarak-bullet"></span>Kesulitan melihat jelas saat malam hari</li>
+            </ul>
+          </div>
+          <div class="text-center mt-4">
+            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill mb-2">Solusi Digital</span><br>
+            <span class="text-secondary">CatarakSense hadir sebagai solusi digital inovatif untuk membantu deteksi dini katarak melalui analisis citra mata, dengan cara yang praktis dan cepat.</span>
+          </div>
+        </div>
+      </div>
+      <!-- Ornamen SVG -->
+      <svg class="katarak-info-ornamen" width="120" height="120" viewBox="0 0 120 120" fill="none">
+        <circle cx="60" cy="60" r="60" fill="#0d8abc" fill-opacity="0.08"/>
+      </svg>
     </section>
 
     <!-- Artikel Section (Slider) -->
-    <section id="artikel" class="bg-light py-5">
+    <section id="artikel" class="artikel-section py-5 fade-in-section">
       <div class="container">
-        <h2 class="mb-4 text-primary text-center">Artikel Mengenai Katarak</h2>
-        <div id="artikelSlider" class="d-flex overflow-hidden" style="scroll-behavior:smooth;">
-          <div class="flex-shrink-0 p-2" style="width:340px; min-width:340px;">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Apa itu Katarak?</h5>
-                <p class="card-text">Mengenal Katarak, Gangguan Mata Lansia yang Menyebabkan Kebutaan.</p>
-                <a href="https://www.mitrakeluarga.com/artikel/katarak-adalah" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+        <h2 class="mb-4 text-primary text-center fw-bold" style="font-size:2rem;">Artikel Mengenai Katarak</h2>
+        <div class="artikel-grid row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-4">
+            <div class="artikel-card shadow-sm h-100 border-0">
+              <img src="src/assets/mitra.jpg" alt="Apa itu Katarak?" class="artikel-img-top" />
+              <div class="p-3">
+                <span class="badge artikel-badge bg-theme mb-2">Info Katarak</span>
+                <h5 class="fw-bold text-primary mb-2">Apa itu Katarak?</h5>
+                <p class="mb-2 text-secondary">Mengenal Katarak, Gangguan Mata Lansia yang Menyebabkan Kebutaan.</p>
+                <a href="https://www.mitrakeluarga.com/artikel/katarak-adalah" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">Baca Selengkapnya</a>
               </div>
             </div>
           </div>
-          <div class="flex-shrink-0 p-2" style="width:340px; min-width:340px;">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Gejala Katarak</h5>
-                <p class="card-text">Gejala Katarak Tahap Awal: Kenali Tanda-Tandanya Sebelum Terlambat.</p>
-                <a href="https://www.alodokter.com/katarak-pada-manula" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+          <div class="col-md-6 col-lg-4">
+            <div class="artikel-card shadow-sm h-100 border-0">
+              <img src="src/assets/alo.jpg" alt="Gejala Katarak" class="artikel-img-top" />
+              <div class="p-3">
+                <span class="badge artikel-badge bg-theme mb-2">Gejala</span>
+                <h5 class="fw-bold text-primary mb-2">Gejala Katarak</h5>
+                <p class="mb-2 text-secondary">Gejala Katarak Tahap Awal: Kenali Tanda-Tandanya Sebelum Terlambat.</p>
+                <a href="https://www.alodokter.com/katarak-pada-manula" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">Baca Selengkapnya</a>
               </div>
             </div>
           </div>
-          <div class="flex-shrink-0 p-2" style="width:340px; min-width:340px;">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Cara Mencegah Katarak</h5>
-                <p class="card-text">Cara Pencegahan Katarak yang Paling Efektif untuk Menjaga Kesehatan Mata</p>
-                <a href="https://jec.co.id/id/article/3-cara-pencegahan-katarak-yang-paling-efektif" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
-              </div>
-            </div>
-          </div>
-          <div class="flex-shrink-0 p-2" style="width:340px; min-width:340px;">
-            <div class="card h-100 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Cara Mencegah Katarak</h5>
-                <p class="card-text">Katarak Bisa Menyerang Di Usia Muda?</p>
-                <a href="https://rsislamaysha.com/2023/01/17/katarak-bisa-menyerang-di-usia-muda/" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">Baca Selengkapnya</a>
+          <div class="col-md-6 col-lg-4">
+            <div class="artikel-card shadow-sm h-100 border-0">
+              <img src="src/assets/jec.jpg" alt="Cara Mencegah Katarak" class="artikel-img-top" />
+              <div class="p-3">
+                <span class="badge artikel-badge bg-theme mb-2">Pencegahan</span>
+                <h5 class="fw-bold text-primary mb-2">Cara Mencegah Katarak</h5>
+                <p class="mb-2 text-secondary">Cara Pencegahan Katarak yang Paling Efektif untuk Menjaga Kesehatan Mata.</p>
+                <a href="https://jec.co.id/id/article/3-cara-pencegahan-katarak-yang-paling-efektif" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm rounded-pill px-3">Baca Selengkapnya</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="d-flex justify-content-center gap-3 mt-3">
-          <button id="prevArtikelMobile" class="btn btn-outline-primary">
-            &lt;
-          </button>
-          <button id="nextArtikelMobile" class="btn btn-outline-primary">
-            &gt;
-          </button>
+        <div class="text-center mt-4">
+          <a href="#artikel" class="btn btn-theme px-4 py-2 rounded-pill fw-bold">Lihat Semua Artikel</a>
         </div>
       </div>
     </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-cataraksense mt-5 pt-5 pb-4">
+      <div class="container">
+        <div class="row gy-4">
+          <!-- Kiri: Logo & Kontak -->
+          <div class="col-lg-4">
+            <div class="mb-3 d-flex align-items-center gap-2">
+              <img src="src/assets/logo-cataraksense.png" alt="CatarakSense" width="38" height="38" />
+              <span class="fs-3 fw-bold text-primary">CatarakSense</span>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="footer-badge"><img src="src/assets/icon-ai.png" width="20" class="me-1" />AI Deteksi</span>
+              <span class="footer-badge"><img src="src/assets/icon-info.png" width="20" class="me-1" />Info Katarak</span>
+              <span class="footer-badge"><img src="src/assets/icon-edu.png" width="20" class="me-1" />Edukasi</span>
+            </div>
+            <div class="footer-contact mb-2">
+              <i class="bi bi-envelope me-2"></i> cataraksense@gmail.com
+            </div>
+            <div class="footer-contact">
+              <i class="bi bi-telephone me-2"></i> 0812-3456-7890
+            </div>
+          </div>
+          <!-- Tengah: Bantuan & Panduan -->
+          <div class="col-6 col-lg-2">
+            <div class="footer-title">Bantuan</div>
+            <ul class="footer-list">
+              <li><a href="#">Pusat Bantuan</a></li>
+              <li><a href="#">Syarat & Ketentuan</a></li>
+              <li><a href="#">Kebijakan Privasi</a></li>
+            </ul>
+          </div>
+          <!-- Tengah: Tentang -->
+          <div class="col-6 col-lg-2">
+            <div class="footer-title">Tentang</div>
+            <ul class="footer-list">
+              <li><a href="#">Tentang Kami</a></li>
+              <li><a href="#">Tim CatarakSense</a></li>
+              <li><a href="#">Blog</a></li>
+            </ul>
+          </div>
+          <!-- Kanan: Kolaborasi -->
+          <div class="col-12 col-lg-4">
+            <div class="footer-title">Kolaborasi</div>
+            <ul class="footer-list">
+              <li><a href="#">Gabung Relawan</a></li>
+              <li><a href="#">Partner Rumah Sakit</a></li>
+              <li><a href="#">Program Edukasi</a></li>
+            </ul>
+            <div class="mt-3">
+              <img src="src/assets/footer-banner.png" alt="CatarakSense Banner" class="img-fluid rounded shadow-sm" style="max-width:320px;">
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4 text-secondary small">
+          &copy; 2025 CatarakSense. All rights reserved.
+        </div>
+      </div>
+    </footer>
   `;
 }

@@ -6,24 +6,20 @@ export default function renderLoginPage() {
     if (form) {
       form.onsubmit = async function(e) {
         e.preventDefault();
-        const username = document.getElementById('loginUsername').value;
-        const password = document.getElementById('loginPassword').value;
-        const result = document.getElementById('login-result');
-        result.innerHTML = '<div class="alert alert-info">Memproses...</div>';
-        try {
-          const data = await loginUser(username, password);
-          if (data.status === 'success') {
-            localStorage.setItem('user', JSON.stringify(data.user));
-            result.innerHTML = '<div class="alert alert-success">Login berhasil! Mengarahkan ke deteksi...</div>';
-            setTimeout(() => {
-              window.location.hash = '#deteksi';
-              window.dispatchEvent(new HashChangeEvent('hashchange'));
-            }, 1000);
-          } else {
-            result.innerHTML = '<div class="alert alert-danger">' + (data.message || 'Login gagal') + '</div>';
-          }
-        } catch (err) {
-          result.innerHTML = '<div class="alert alert-danger">Terjadi kesalahan koneksi ke server.</div>';
+        const username = form.username.value;
+        const password = form.password.value;
+        const result = await loginUser({ username, password });
+        if (result.access_token) {
+          const username = result.username || result.user?.username || form.username.value;
+          const email = result.email || result.user?.email || '';
+          localStorage.setItem('user', JSON.stringify({
+            name: username,
+            email: email,
+            access_token: result.access_token
+          }));
+          window.location.hash = '#home';
+        } else {
+          alert(result.detail || 'Login gagal');
         }
       };
     }
@@ -36,11 +32,11 @@ export default function renderLoginPage() {
         <form id="form-login" class="mb-3">
           <div class="mb-3">
             <label for="loginUsername" class="form-label">Username</label>
-            <input type="text" id="loginUsername" class="form-control" required />
+            <input type="text" id="loginUsername" name="username" class="form-control" required />
           </div>
           <div class="mb-3">
             <label for="loginPassword" class="form-label">Kata Sandi</label>
-            <input type="password" id="loginPassword" class="form-control" required />
+            <input type="password" id="loginPassword" name="password" class="form-control" required />
           </div>
           <div class="d-grid">
             <button type="submit" class="btn btn-primary">Masuk</button>
@@ -53,4 +49,17 @@ export default function renderLoginPage() {
       </div>
     </section>
   `;
+}
+
+// Misal di handle submit register
+function handleRegisterSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('registerName').value;
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
+  // ...proses validasi dan simpan ke backend...
+
+  // Setelah register sukses:
+  localStorage.setItem('user', JSON.stringify({ name, email }));
+  window.location.hash = '#home'; // redirect ke home
 }
