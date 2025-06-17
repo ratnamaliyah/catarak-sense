@@ -1,4 +1,4 @@
-import { registerUser } from './api.js';
+import { registerUser } from '../data/api.js';
 
 export default function renderRegisterPage() {
   setTimeout(() => {

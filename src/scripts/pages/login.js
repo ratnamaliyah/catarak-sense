@@ -1,4 +1,4 @@
-import { loginUser } from './api.js';
+import { loginUser } from '../data/api.js';
 
 export default function renderLoginPage() {
   setTimeout(() => {
@@ -26,7 +26,7 @@ export default function renderLoginPage() {
   }, 0);
 
   return `
-    <section class="container py-5 d-flex justify-content-center align-items-center" style="min-height:70vh;">
+    <section class="container py-5 d-flex justify-content-center align-items-center">
       <div class="card shadow p-4 w-100" style="max-width:400px;">
         <h2 class="mb-3 text-primary text-center">Masuk</h2>
         <form id="form-login" class="mb-3">

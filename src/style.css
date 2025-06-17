@@ -7,7 +7,6 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  padding-top: 70px; /* sesuaikan dengan tinggi navbar agar konten tidak ketutup */
 }
 
 main {
@@ -379,11 +378,10 @@ html {
 
 /* Misal class navbar kamu .navbar atau .main-navbar */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: sticky !important;
+  top : 0;
   width: 100%;
-  z-index: 1050;
+  z-index: 1050 !important;
   background: #fff; /* atau warna navbar kamu */
   box-shadow: 0 2px 12px rgba(13,138,188,0.07);
   transition: background 0.2s;
