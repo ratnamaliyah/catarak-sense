@@ -1,11 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 
-import renderHomePage from './scripts/home';
-import renderDeteksiPage from './scripts/deteksi.js';
-import renderAboutPage from './scripts/about.js';
-import renderLoginPage from './scripts/login.js';
-import renderRegisterPage from './scripts/register.js';
+import renderHomePage from './scripts/pages/home';
+import renderDeteksiPage from './scripts/pages/deteksi.js';
+import renderAboutPage from './scripts/pages/about.js';
+import renderLoginPage from './scripts/pages/login.js';
+import renderRegisterPage from './scripts/pages/register.js';
+import renderNavbar from './scripts/components/navbar.js';
+import renderFooter from './scripts/components/footer.js';
+import renderProfilePage from './scripts/pages/profile.js';
 
 const app = document.querySelector('#app');
 
@@ -18,6 +21,14 @@ function handleRouting() {
   let html = '';
 
   switch (hash.split('?')[0]) {
+    case 'profile':
+      if (isLoggedIn()) {
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        html = renderProfilePage(isLoggedIn(), user);
+      } else {
+        html = renderProfilePage(isLoggedIn());
+      }
+      break;
     case 'deteksi':
       html = renderDeteksiPage(isLoggedIn());
       break;
@@ -111,14 +122,33 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// Contoh handler menu
-// Saat menu About diklik:
-const menuAbout = document.getElementById('menu-about');
-if (menuAbout) {
-  menuAbout.onclick = () => {
-    document.getElementById('main-content').innerHTML = renderAboutPage();
-  };
+window.addEventListener('DOMContentLoaded', () => {
+  // Pastikan header dan footer tersedia
+  const header = document.getElementById('header-container');
+  const footer = document.getElementById('footer-container');
+
+  if (header) header.innerHTML = renderNavbar();
+  if (footer) footer.innerHTML = renderFooter();
+
+  handleRouting();
+
+  // Routing saat hash berubah
+  window.addEventListener('hashchange', handleRouting);
+
+  // Collapse navbar saat link diklik
+  document.addEventListener('click', (e) => {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const isNavLink = e.target.classList.contains('nav-link');
+
+    if (navbarCollapse && navbarCollapse.classList.contains('show') && isNavLink) {
+      const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+      bsCollapse.hide();
+    }
+  });
+  // Render auth actions
+  renderAuthActions();
 }
+);
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

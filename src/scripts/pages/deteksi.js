@@ -1,10 +1,10 @@
-import { deteksiCatarak } from './api.js';
+import { deteksiCatarak } from '../data/api.js';
 
 export default function renderDeteksiPage(isLoggedIn) {
   // Render HTML
   if (!isLoggedIn) {
     return `
-      <section class="container py-5 d-flex justify-content-center align-items-center" style="min-height:70vh;">
+      <section class="container py-5 d-flex justify-content-center align-items-center">
         <div class="card shadow p-4 w-100" style="max-width:400px;">
           <h2 class="mb-3 text-primary text-center">Yuk, Masuk atau Daftar Dulu</h2>
           <p class="mb-4 text-center">Untuk menggunakan fitur deteksi katarak, silakan masuk ke akun Anda atau daftar terlebih dahulu.</p>
@@ -18,10 +18,10 @@ export default function renderDeteksiPage(isLoggedIn) {
   }
 
   return `
-    <section class="container py-5" style="min-height:70vh;">
+    <section class="container py-5">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <h2 class="mb-4 text-primary text-center">Deteksi Katarak</h2>
+          <h1 class="fw-bold mb-4 text-primary text-center">Deteksi Katarak</h1>
           <form id="deteksiForm" class="mb-4">
             <div class="mb-3">
               <label>Upload Foto Mata</label>
