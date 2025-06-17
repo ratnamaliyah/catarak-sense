@@ -82,13 +82,10 @@ export default function renderAboutPage() {
               <div class="col-12">
                 <div class="card border-0 shadow-sm">
                   <div class="card-body p-4">
-                    <div class="text-center mb-4">
-                      <i class="fas fa-users text-primary mb-3" style="font-size: 2rem;"></i>
+                    <div class="text-center pb-4">
                       <h3 class="text-primary">Our Team</h3>
                     </div>
-                    <p class="text-muted text-center mb-3">
-                      CatarakSense dikembangkan oleh tim yang terdiri dari:
-                    </p>
+                    
                     <div class="row text-center">
                       <div class="col-md-4 mb-3">
                         <h6 class="text-primary">Front-End Developer</h6>
